@@ -19,11 +19,6 @@ namespace NarrativeGame.Interactions.Extendables.Interactables
             return !_alreadyRotated;
         }
 
-        public override string InteractDescription()
-        {
-            throw new System.NotImplementedException();
-        }
-
         protected override void ExecuteInteraction(IInteractor interactor)
         {
             _alreadyRotated = true;

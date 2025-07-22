@@ -12,7 +12,7 @@ namespace NarrativeGame.Interactions.Extendables.Interactables
         [SerializeField, HideInInspector] private Transform _originalParent;
 
         private static Vector3 positionOffset = new(0, 1, 1);
-        
+
         public override bool CanInteract(IInteractor interactor)
         {
             return interactor.CanInteract(this);
@@ -33,11 +33,6 @@ namespace NarrativeGame.Interactions.Extendables.Interactables
             _rigidbody.isKinematic = false;
 
             interactor.ResetInteract();
-        }
-
-        public override string InteractDescription()
-        {
-            throw new System.NotImplementedException();
         }
 
 #if UNITY_EDITOR

@@ -10,10 +10,5 @@ namespace NarrativeGame.Interactions.Core
         {
             Debug.Log(transform.position);
         }
-
-        public override string InteractDescription()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

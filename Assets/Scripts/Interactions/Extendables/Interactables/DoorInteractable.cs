@@ -28,11 +28,6 @@ namespace NarrativeGame.Interactions.Extendables.Interactables
             return !(_isLocked || _isBusy);
         }
 
-        public override string InteractDescription()
-        {
-            throw new System.NotImplementedException();
-        }
-        
         protected override void ExecuteInteraction(IInteractor interactor)
         {
             RotateDoor().Forget();

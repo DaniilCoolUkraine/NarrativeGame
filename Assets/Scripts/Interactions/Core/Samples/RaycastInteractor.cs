@@ -87,7 +87,7 @@ namespace NarrativeGame.Interactions.Core
             if (interactable != _currentInteractable)
             {
                 _currentInteractable = interactable;
-                GlobalEvents.Publish(new InteractableChangedEvent(_currentInteractable));
+                GlobalEvents.Publish(new InteractableChangedEvent(_currentInteractable, this));
             }
         }
 
