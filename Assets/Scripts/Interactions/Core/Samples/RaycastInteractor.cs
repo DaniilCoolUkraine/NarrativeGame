@@ -1,4 +1,7 @@
-﻿using Sirenix.OdinInspector;
+﻿using System;
+using Cysharp.Threading.Tasks;
+using SimpleEventBus.SimpleEventBus.Runtime;
+using Sirenix.OdinInspector;
 using StarterAssets;
 using UnityEngine;
 
@@ -17,6 +20,11 @@ namespace NarrativeGame.Interactions.Core
         private bool _isBusy;
         private IInteractable _currentInteractable;
 
+        private void OnEnable()
+        {
+            SendRaycastDelayed().Forget();
+        }
+
         private void Update()
         {
             if (_playerInput.Interact)
@@ -28,7 +36,8 @@ namespace NarrativeGame.Interactions.Core
                 }
                 else
                 {
-                    SendRaycast();
+                    if (_currentInteractable?.CanInteract(this) ?? false)
+                        Interact(_currentInteractable);
                 }
 
                 _playerInput.ResetInteract();
@@ -43,8 +52,6 @@ namespace NarrativeGame.Interactions.Core
         public void Interact(IInteractable interactable)
         {
             _isBusy = true;
-            _currentInteractable = interactable;
-
             interactable.Interact(this);
         }
 
@@ -53,22 +60,35 @@ namespace NarrativeGame.Interactions.Core
             _isBusy = false;
         }
 
+        private async UniTaskVoid SendRaycastDelayed()
+        {
+            while (gameObject.activeSelf)
+            {
+                for (int i = 0; i < 5; i++) 
+                    await UniTask.NextFrame();
+
+                SendRaycast();
+            }
+        }
+        
         private void SendRaycast()
         {
             Vector2 screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
             Ray aimRay = _camera.ScreenPointToRay(screenCenter);
 
-            if (!Physics.Raycast(aimRay, out RaycastHit hit, _range, _interactableLayerMask)) 
-                return;
-            if (!hit.transform.TryGetComponent<IInteractable>(out var interactable))
+            IInteractable interactable = null;
+
+            if (Physics.Raycast(aimRay, out RaycastHit hit, _range, _interactableLayerMask))
             {
-                interactable = hit.transform.GetComponentInParent<IInteractable>();
-                if (interactable == null)
-                    return;
+                if (!hit.transform.TryGetComponent<IInteractable>(out interactable))
+                    interactable = hit.transform.GetComponentInParent<IInteractable>();
             }
 
-            if (interactable.CanInteract(this))
-                Interact(interactable);
+            if (interactable != _currentInteractable)
+            {
+                _currentInteractable = interactable;
+                GlobalEvents.Publish(new InteractableChangedEvent(_currentInteractable));
+            }
         }
 
 #if UNITY_EDITOR
