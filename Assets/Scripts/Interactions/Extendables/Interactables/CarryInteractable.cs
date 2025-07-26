@@ -1,4 +1,6 @@
 ﻿using NarrativeGame.Interactions.Core;
+using NarrativeGame.Interactions.Core.Interfaces;
+using NarrativeGame.Interactions.Core.Samples.Interactables;
 using NarrativeGame.Interactions.Extendables.Events;
 using SimpleEventBus.SimpleEventBus.Runtime;
 using Sirenix.OdinInspector;

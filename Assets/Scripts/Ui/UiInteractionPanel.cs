@@ -1,4 +1,4 @@
-﻿using NarrativeGame.Interactions.Core;
+﻿using NarrativeGame.Interactions.Core.Samples.Events;
 using SimpleEventBus.SimpleEventBus.Runtime;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -41,6 +41,11 @@ namespace NarrativeGame.Ui
             }
 
             _nameText.text = ev.Interactable.InteractDescription();
+        }
+
+        public void ForceUpdateState(bool state)
+        {
+            _hintPanel.gameObject.SetActive(state);
         }
     }
 }

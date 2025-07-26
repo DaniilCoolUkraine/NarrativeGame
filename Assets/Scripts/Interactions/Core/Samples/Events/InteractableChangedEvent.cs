@@ -1,6 +1,7 @@
-﻿using SimpleEventBus.SimpleEventBus.Runtime;
+﻿using NarrativeGame.Interactions.Core.Interfaces;
+using SimpleEventBus.SimpleEventBus.Runtime;
 
-namespace NarrativeGame.Interactions.Core
+namespace NarrativeGame.Interactions.Core.Samples.Events
 {
     public class InteractableChangedEvent : IEvent
     {

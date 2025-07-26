@@ -1,4 +1,5 @@
 ﻿using NarrativeGame.Interactions.Core;
+using NarrativeGame.Interactions.Core.Interfaces;
 using SimpleEventBus.SimpleEventBus.Runtime;
 
 namespace NarrativeGame.Interactions.Extendables.Events

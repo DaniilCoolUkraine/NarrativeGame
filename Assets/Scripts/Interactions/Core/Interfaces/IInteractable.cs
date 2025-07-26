@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace NarrativeGame.Interactions.Core
+namespace NarrativeGame.Interactions.Core.Interfaces
 {
     public interface IInteractable
     {

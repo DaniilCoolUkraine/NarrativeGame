@@ -1,11 +1,12 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
+using NarrativeGame.Interactions.Core.Interfaces;
+using NarrativeGame.Interactions.Core.Samples.Events;
 using SimpleEventBus.SimpleEventBus.Runtime;
 using Sirenix.OdinInspector;
 using StarterAssets;
 using UnityEngine;
 
-namespace NarrativeGame.Interactions.Core
+namespace NarrativeGame.Interactions.Core.Samples
 {
     public class RaycastInteractor : MonoBehaviour, IInteractor 
     {

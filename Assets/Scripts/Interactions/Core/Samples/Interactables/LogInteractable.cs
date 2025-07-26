@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using NarrativeGame.Interactions.Core.Interfaces;
+using UnityEngine;
 
-namespace NarrativeGame.Interactions.Core
+namespace NarrativeGame.Interactions.Core.Samples.Interactables
 {
     public class LogInteractable : InstantInteractable
     {

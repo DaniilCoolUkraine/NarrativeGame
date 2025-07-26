@@ -1,7 +1,7 @@
-﻿using SimpleEventBus.SimpleEventBus.Runtime;
+﻿using NarrativeGame.Interactions.Core.Interfaces;
 using UnityEngine;
 
-namespace NarrativeGame.Interactions.Core
+namespace NarrativeGame.Interactions.Core.Samples.Interactables
 {
     public abstract class Interactable : MonoBehaviour, IInteractable
     {
@@ -17,12 +17,6 @@ namespace NarrativeGame.Interactions.Core
                 return gameObject.name;
 
             return _name;
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.TryGetComponent<IInteractor>(out var interactor)) 
-                GlobalEvents.Publish(new InteractorInZoneEvent(interactor));
         }
     }
 }

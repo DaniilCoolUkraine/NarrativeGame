@@ -1,4 +1,6 @@
-﻿namespace NarrativeGame.Interactions.Core
+﻿using NarrativeGame.Interactions.Core.Interfaces;
+
+namespace NarrativeGame.Interactions.Core.Samples.Interactables
 {
     public abstract class InstantInteractable : Interactable
     {
