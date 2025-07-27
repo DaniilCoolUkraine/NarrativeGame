@@ -2877,17 +2877,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4883762814713038, guid: baebdd3b26f756b4c8f1b2d2efe1cf42, type: 3}
   m_PrefabInstance: {fileID: 75571826}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &77458270 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 334202762076391334, guid: 3aabc8504f01056408eedc3242741f11, type: 3}
-  m_PrefabInstance: {fileID: 4266968341005491933}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &77458274 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2218830667095418488, guid: 3aabc8504f01056408eedc3242741f11, type: 3}
   m_PrefabInstance: {fileID: 4266968341005491933}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 77458270}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c58e0c3a673942f3b0f94a122ee28237, type: 3}
@@ -2898,53 +2893,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1492821873807784749, guid: 3aabc8504f01056408eedc3242741f11, type: 3}
   m_PrefabInstance: {fileID: 4266968341005491933}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 77458270}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &77458279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 77458270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b57d2d0951941cda0c6a1ebe92ad692, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 77458275}
-    - {fileID: 77458274}
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: _enablables
-      Entry: 7
-      Data: 0|NarrativeGame.IEnablable[], Assembly-CSharp
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 1
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
 --- !u!1001 &78911861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67685,13 +67639,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8193810175391763000, guid: 3aabc8504f01056408eedc3242741f11, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 8193810175391763000, guid: 3aabc8504f01056408eedc3242741f11, type: 3}
+    - target: {fileID: 8193810175391763000, guid: 3aabc8504f01056408eedc3242741f11, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193810175391763000, guid: 3aabc8504f01056408eedc3242741f11, type: 3}
+      propertyPath: 'serializationData.PrefabModifications.Array.data[0]'
+      value: '"path":"_enablables.[0]","value":$eref:0'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193810175391763000, guid: 3aabc8504f01056408eedc3242741f11, type: 3}
+      propertyPath: 'serializationData.PrefabModifications.Array.data[1]'
+      value: '"path":"_enablables.[1]","value":$eref:1'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193810175391763000, guid: 3aabc8504f01056408eedc3242741f11, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193810175391763000, guid: 3aabc8504f01056408eedc3242741f11, type: 3}
+      propertyPath: 'serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 77458275}
+    - target: {fileID: 8193810175391763000, guid: 3aabc8504f01056408eedc3242741f11, type: 3}
+      propertyPath: 'serializationData.PrefabModificationsReferencedUnityObjects.Array.data[1]'
+      value: 
+      objectReference: {fileID: 77458274}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 334202762076391334, guid: 3aabc8504f01056408eedc3242741f11, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 77458279}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aabc8504f01056408eedc3242741f11, type: 3}
 --- !u!4 &4660855750210505595
 Transform:
