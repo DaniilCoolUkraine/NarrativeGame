@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace NarrativeGame.Interactions.Core.Samples
 {
-    public class RaycastInteractor : MonoBehaviour, IInteractor 
+    public class RaycastInteractor : MonoBehaviour, IInteractor, IEnablable
     {
         [Header("Reference")]
         [SerializeField, Required] private StarterAssetsInputs _playerInput;
@@ -19,8 +19,10 @@ namespace NarrativeGame.Interactions.Core.Samples
         [SerializeField] private LayerMask _interactableLayerMask;
 
         private bool _isBusy;
-        private IInteractable _currentInteractable;
+        private bool _inputBlocked;
 
+        private IInteractable _currentInteractable;
+        
         private void OnEnable()
         {
             SendRaycastDelayed().Forget();
@@ -28,6 +30,9 @@ namespace NarrativeGame.Interactions.Core.Samples
 
         private void Update()
         {
+            if (_inputBlocked)
+                return;
+            
             if (_playerInput.Interact)
             {
                 if (_isBusy)
@@ -65,6 +70,12 @@ namespace NarrativeGame.Interactions.Core.Samples
         {
             while (gameObject.activeSelf)
             {
+                if (_inputBlocked)
+                {
+                    await UniTask.NextFrame();
+                    continue;
+                }
+
                 for (int i = 0; i < 5; i++) 
                     await UniTask.NextFrame();
 
@@ -99,5 +110,14 @@ namespace NarrativeGame.Interactions.Core.Samples
             UnityEditor.EditorUtility.SetDirty(this);
         }
 #endif
+        public void Enable()
+        {
+            _inputBlocked = false;
+        }
+
+        public void Disable()
+        {
+            _inputBlocked = true;
+        }
     }
 }

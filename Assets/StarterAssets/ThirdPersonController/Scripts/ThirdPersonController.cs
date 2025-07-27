@@ -1,4 +1,5 @@
-﻿ using NarrativeGame.Animations.Events;
+﻿ using NarrativeGame;
+ using NarrativeGame.Animations.Events;
  using SimpleEventBus.SimpleEventBus.Runtime;
  using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
@@ -14,7 +15,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM 
     [RequireComponent(typeof(PlayerInput))]
 #endif
-    public class ThirdPersonController : MonoBehaviour
+    public class ThirdPersonController : MonoBehaviour, IEnablable
     {
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
@@ -93,13 +94,6 @@ namespace StarterAssets
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
 
-        // animation IDs
-        // private int _animIDSpeed;
-        // private int _animIDGrounded;
-        // private int _animIDJump;
-        // private int _animIDFreeFall;
-        // private int _animIDMotionSpeed;
-
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
 #endif
@@ -113,6 +107,8 @@ namespace StarterAssets
         private bool _previousGrounded;
         private bool _alreadyResetJump;
         private bool _alreadyInFreefall;
+
+        private bool _inputBlocked;
 
         private bool IsCurrentDeviceMouse
         {
@@ -148,8 +144,6 @@ namespace StarterAssets
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
 
-            // AssignAnimationIDs();
-
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
@@ -157,6 +151,9 @@ namespace StarterAssets
 
         private void Update()
         {
+            if (_inputBlocked)
+                return;
+
             JumpAndGravity();
             GroundedCheck();
             Move();
@@ -164,17 +161,11 @@ namespace StarterAssets
 
         private void LateUpdate()
         {
+            if (_inputBlocked)
+                return;
+
             CameraRotation();
         }
-
-        // private void AssignAnimationIDs()
-        // {
-        //     _animIDSpeed = Animator.StringToHash("Speed");
-        //     _animIDGrounded = Animator.StringToHash("Grounded");
-        //     _animIDJump = Animator.StringToHash("Jump");
-        //     _animIDFreeFall = Animator.StringToHash("FreeFall");
-        //     _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
-        // }
 
         private void GroundedCheck()
         {
@@ -183,12 +174,6 @@ namespace StarterAssets
                 transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
                 QueryTriggerInteraction.Ignore);
-
-            // update animator if using character
-            // if (_hasAnimator)
-            // {
-            //     _animator.SetBool(_animIDGrounded, Grounded);
-            // }
 
             if (_previousGrounded != Grounded) 
                 GlobalEvents.Publish(new GroundedEvent(Grounded));
@@ -274,13 +259,6 @@ namespace StarterAssets
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
             GlobalEvents.Publish(new MovementEvent(_speed, SpeedChangeRate, inputMagnitude));
-            
-            // update animator if using character
-            // if (_hasAnimator)
-            // {
-            //     _animator.SetFloat(_animIDSpeed, _animationBlend);
-            //     _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
-            // }
         }
 
         private void JumpAndGravity()
@@ -289,13 +267,6 @@ namespace StarterAssets
             {
                 // reset the fall timeout timer
                 _fallTimeoutDelta = FallTimeout;
-
-                // update animator if using character
-                // if (_hasAnimator)
-                // {
-                //     _animator.SetBool(_animIDJump, false);
-                //     _animator.SetBool(_animIDFreeFall, false);
-                // }
 
                 if (!_alreadyResetJump)
                 {
@@ -318,12 +289,6 @@ namespace StarterAssets
                     // the square root of H * -2 * G = how much velocity needed to reach desired height
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
 
-                    // update animator if using character
-                    // if (_hasAnimator)
-                    // {
-                    //     _animator.SetBool(_animIDJump, true);
-                    // }
-                    
                     GlobalEvents.Publish(new JumpEvent());
                     _alreadyResetJump = false;
                 }
@@ -346,11 +311,6 @@ namespace StarterAssets
                 }
                 else
                 {
-                    // update animator if using character
-                    // if (_hasAnimator)
-                    // {
-                    //     _animator.SetBool(_animIDFreeFall, true);
-                    // }
                     if (!_alreadyInFreefall)
                     {
                         GlobalEvents.Publish(new FreeFallEvent());
@@ -408,6 +368,16 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+
+        public void Enable()
+        {
+            _inputBlocked = false;
+        }
+
+        public void Disable()
+        {
+            _inputBlocked = true;
         }
     }
 }
