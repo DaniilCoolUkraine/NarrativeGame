@@ -5,6 +5,7 @@ using SimpleEventBus.SimpleEventBus.Runtime;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace NarrativeGame.Ui
 {
@@ -12,6 +13,7 @@ namespace NarrativeGame.Ui
     {
         [SerializeField, Required] private CanvasGroup _dialogueGroup;
         [SerializeField, Required] private TextMeshProUGUI _dialogueText;
+        [SerializeField, Required] private Image _dialogueImage;
 
         private DialogueAsset _currentDialogue;
         private bool _isBusy;
@@ -42,6 +44,8 @@ namespace NarrativeGame.Ui
             _dialogueGroup.gameObject.SetActive(true);
             _currentDialogue = ev.DialogueAsset;
             _isBusy = true;
+
+            _dialogueImage.sprite = ev.DialogueAsset.Image;
 
             UpdateLine();
         }
