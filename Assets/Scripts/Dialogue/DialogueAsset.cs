@@ -1,4 +1,5 @@
-﻿using NarrativeGame.Interactions.Extendables.Events;
+﻿using System;
+using NarrativeGame.Interactions.Extendables.Events;
 using SimpleEventBus.SimpleEventBus.Runtime;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -13,6 +14,11 @@ namespace NarrativeGame.Dialogue
 
         public Sprite Image => _image;
         private int _currentLineIndex;
+
+        private void Awake()
+        {
+            _currentLineIndex = 0;
+        }
 
         public string GetNextLine()
         {

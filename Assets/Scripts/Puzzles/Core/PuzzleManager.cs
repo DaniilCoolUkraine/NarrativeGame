@@ -31,8 +31,10 @@ namespace NarrativeGame.Puzzles
                 return;
             }
 
-            if (puzzleGroup.Solved) 
-                Debug.Log("Happy");
+            if (puzzleGroup.Solved)
+            {
+                GlobalEvents.Publish(new PuzzleGroupSolvedEvent(puzzleGroup.Id));
+            }
         }
     }
 }

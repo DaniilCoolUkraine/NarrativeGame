@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec9bf83667e44ffaf501cc02d89b212, type: 3}
+  m_Name: Guard_1_Initial
+  m_EditorClassIdentifier: 
+  _image: {fileID: 21300000, guid: e7566817de3459848951769ccc8be17b, type: 3}
+  _dialogueLines:
+  - Stop there! Who are you?
+  - Ahhh... Nevermind. I cant stop you in this form...
+  - Yes, I'm a ghost, why?
+  - Could I ask you for a litle help?
+  - The last task, I've got before my death, was to light up these braziers
+  - This is the last thing, chained me to this world
+  - Would you help me?

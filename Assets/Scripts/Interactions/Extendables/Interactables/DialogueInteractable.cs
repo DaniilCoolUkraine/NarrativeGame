@@ -30,6 +30,11 @@ namespace NarrativeGame.Interactions.Extendables.Interactables
         {
             interactor.ResetInteract();
         }
+        
+        public void UpdateAsset(DialogueAsset newAsset)
+        {
+            _dialogueAsset = newAsset;
+        }
 
         private void OnDialogueEnd(DialogueEndEvent ev)
         {
