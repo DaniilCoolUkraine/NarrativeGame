@@ -1,4 +1,5 @@
 ﻿using NarrativeGame.Dialogue;
+using NarrativeGame.Interactions.Extendables.Events;
 using NarrativeGame.Puzzles.Core;
 using SimpleEventBus.SimpleEventBus.Runtime;
 using UnityEditor;
@@ -43,8 +44,12 @@ namespace NarrativeGame.Interactions.Extendables.Interactables
                 _dialogueInteractable.UpdateAsset(_dialogueAssets[_currentDialogueAssetIndex]);
                 _currentDialogueAssetIndex++;
             }
-            else
+
+            if (_currentDialogueAssetIndex >= _dialogueAssets.Length)
+            {
                 GlobalEvents.RemoveListener<PuzzleGroupSolvedEvent>(OnPuzzleGroupSolved);
+                GlobalEvents.Publish(new DialogueAssetsEnd(_dialogueInteractable));
+            }
         }
     }
 }
