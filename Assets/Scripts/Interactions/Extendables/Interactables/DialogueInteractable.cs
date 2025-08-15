@@ -1,5 +1,6 @@
 ﻿using System;
 using NarrativeGame.Dialogue;
+using NarrativeGame.Dialogue.Strategies;
 using NarrativeGame.Interactions.Core.Interfaces;
 using NarrativeGame.Interactions.Core.Samples.Interactables;
 using NarrativeGame.Interactions.Extendables.Events;
@@ -13,8 +14,9 @@ namespace NarrativeGame.Interactions.Extendables.Interactables
 {
     public class DialogueInteractable : Interactable
     {
-        [SerializeField, Required] private DialogueAsset _dialogueAsset;
-
+        [SerializeField, Required]     private DialogueAsset _dialogueAsset;
+        [SerializeReference, Required] private IDialogueEndStrategy[] _dialogueEndStrategies;
+        
         private IInteractor   _interactor;
         private IStateMachine _stateMachine;
 
@@ -24,7 +26,7 @@ namespace NarrativeGame.Interactions.Extendables.Interactables
         private void Awake()
         {
             _defaultState = new DialogueDefaultState();
-            _lastAssetState = new DialogueLastAssetState(this);
+            _lastAssetState = new DialogueLastAssetState(this, _dialogueEndStrategies);
         }
 
         private void OnEnable()

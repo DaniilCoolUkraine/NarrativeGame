@@ -2,7 +2,7 @@
 using NarrativeGame.Puzzles.Core.Interfaces;
 using Sirenix.OdinInspector;
 
-namespace NarrativeGame.Puzzles
+namespace NarrativeGame.Puzzles.Core
 {
     public class PuzzleData
     {

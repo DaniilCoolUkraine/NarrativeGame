@@ -1,11 +1,9 @@
-﻿using System;
-using System.Linq;
-using NarrativeGame.Puzzles.Core;
+﻿using System.Linq;
 using SimpleEventBus.SimpleEventBus.Runtime;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace NarrativeGame.Puzzles
+namespace NarrativeGame.Puzzles.Core
 {
     public class PuzzleManager : SerializedMonoBehaviour
     {
