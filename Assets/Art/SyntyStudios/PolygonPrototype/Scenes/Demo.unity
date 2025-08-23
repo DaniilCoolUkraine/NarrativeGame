@@ -50566,14 +50566,14 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d38c5c0e1454cb7b35a439fc7cee617, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  _door: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::NarrativeGame.Door.DoorOpenCondition
+  _door: {fileID: 1643166643}
   _unlockStrategies:
-  - rid: 4912789877760721011
+  - rid: 4912790006974906466
   references:
     version: 2
     RefIds:
-    - rid: 4912789877760721011
+    - rid: 4912790006974906466
       type: {class: LeverPushedStrategy, ns: NarrativeGame.Door.ConcreteStrategies, asm: Assembly-CSharp}
       data:
         _leverId: 0
@@ -65703,8 +65703,10 @@ GameObject:
   - component: {fileID: 4067818739153465}
   - component: {fileID: 64988253705665258}
   - component: {fileID: 64988253705665259}
+  - component: {fileID: 64988253705665261}
   - component: {fileID: 33887663730007903}
   - component: {fileID: 23794937027000475}
+  - component: {fileID: 64988253705665260}
   m_Layer: 7
   m_Name: SM_Buildings_DoorFrame_01P (1)
   m_TagString: Untagged
@@ -67605,6 +67607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Box
   _rigidbody: {fileID: 33489823559532460}
+  _id: 0
   _originalParent: {fileID: 850771672}
 --- !u!54 &33489823559532460
 Rigidbody:
@@ -67679,6 +67682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Box
   _rigidbody: {fileID: 33489824197681288}
+  _id: 0
   _originalParent: {fileID: 850771672}
 --- !u!54 &33489824197681288
 Rigidbody:
@@ -67737,6 +67741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Box
   _rigidbody: {fileID: 33489824569851501}
+  _id: 0
   _originalParent: {fileID: 850771672}
 --- !u!54 &33489824569851501
 Rigidbody:
@@ -67939,12 +67944,50 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d38c5c0e1454cb7b35a439fc7cee617, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  _door: {fileID: 0}
-  _unlockStrategies: []
+  m_EditorClassIdentifier: Assembly-CSharp::NarrativeGame.Door.DoorOpenCondition
+  _door: {fileID: 64988253705665258}
+  _unlockStrategies:
+  - rid: 4912790006974906467
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4912790006974906467
+      type: {class: CarryInteractableStrategy, ns: NarrativeGame.Door.ConcreteStrategies, asm: Assembly-CSharp}
+      data:
+        _carryInteractableId: 0
+--- !u!65 &64988253705665260
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609245663849347}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.3071121, y: 2.253556, z: 1.9150261}
+  m_Center: {x: 0.65355605, y: 1.126778, z: 0.08644659}
+--- !u!114 &64988253705665261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609245663849347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56463aca76b94b309b1be5da6b506164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NarrativeGame.Door.DoorTrigger
 --- !u!1001 &2346051717610695707
 PrefabInstance:
   m_ObjectHideFlags: 0

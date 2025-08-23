@@ -1,5 +1,4 @@
-﻿using NarrativeGame.Interactions.Core;
-using NarrativeGame.Interactions.Core.Interfaces;
+﻿using NarrativeGame.Interactions.Core.Interfaces;
 using NarrativeGame.Interactions.Core.Samples.Interactables;
 using NarrativeGame.Interactions.Extendables.Events;
 using SimpleEventBus.SimpleEventBus.Runtime;
@@ -11,7 +10,11 @@ namespace NarrativeGame.Interactions.Extendables.Interactables
     public class CarryInteractable : Interactable
     {
         [SerializeField, Required] private Rigidbody _rigidbody;
+        [SerializeField]           private int       _id;
+
         [SerializeField, HideInInspector] private Transform _originalParent;
+
+        public int Id => _id;
 
         private static Vector3 positionOffset = new(0, 1, 1);
 
