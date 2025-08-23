@@ -1,9 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
-using NarrativeGame.Interactions.Core;
+using NarrativeGame.Door;
 using NarrativeGame.Interactions.Core.Interfaces;
 using NarrativeGame.Interactions.Core.Samples.Interactables;
-using NarrativeGame.Interactions.Extendables.Events;
-using SimpleEventBus.SimpleEventBus.Runtime;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -14,19 +12,26 @@ namespace NarrativeGame.Interactions.Extendables.Interactables
         [SerializeField] private bool _isLocked;
         [SerializeField, Required] private Transform _door;
 
-        [SerializeField, ShowIf("_isLocked")] private int _connectedLeverId;
-
         private bool _alreadyRotated;
         private bool _isBusy;
 
-        private void Awake()
+        public void UnlockDoor()
         {
-            GlobalEvents.AddListener<LeverPushedEvent>(OnLeverPushed);
+            UpdateLockState(false);
+        }
+
+        public void LockDoor()
+        {
+            UpdateLockState(true);
+        }
+
+        private void UpdateLockState(bool isLocked)
+        {
+            _isLocked = isLocked;
         }
 
         public override bool CanInteract(IInteractor interactor)
         {
-            // return !(_isLocked || _alreadyRotated);
             return !(_isLocked || _isBusy);
         }
 
@@ -57,10 +62,17 @@ namespace NarrativeGame.Interactions.Extendables.Interactables
             _isBusy = false;
         }
         
-        private void OnLeverPushed(LeverPushedEvent ev)
+        #if UNITY_EDITOR
+        private void OnValidate()
         {
-            if (_connectedLeverId == ev.LeverId) 
-                _isLocked = false;
+            if (_isLocked && GetComponent<DoorOpenCondition>() == null) 
+                gameObject.AddComponent<DoorOpenCondition>();
+
+            if (!_isLocked && TryGetComponent<DoorOpenCondition>(out var component)) 
+                DestroyImmediate(component);
+
+            UnityEditor.EditorUtility.SetDirty(this);
         }
+        #endif
     }
 }
